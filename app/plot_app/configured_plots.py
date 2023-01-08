@@ -286,6 +286,16 @@ def generate_plots(ulog, px4_ulog, db_data, vehicle_data, link_to_3d_page,
 
         if data_plot.finalize() is not None: plots.append(data_plot)
 
+#Distance covered
+    data_plot = DataPlot(data, plot_config, 'vehicle_local_position',
+                        y_axis_label='[m]', title='Distance Flown',
+                        plot_height='small', changed_params=changed_params,
+                        x_range=x_range)
+    data_plot.add_graph([lambda data: ('x', np.cumsum(np.sqrt(np.square(np.diff(data['x']))+np.square(np.diff(data['y'])))))], colors2[0:1], ['Flown Distance Estimated'], mark_nan=True)
+    plot_flight_modes_background(data_plot, flight_mode_changes, vtol_states)
+
+    if data_plot.finalize() is not None: plots.append(data_plot)
+
 
 
     # Velocity

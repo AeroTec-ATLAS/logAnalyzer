@@ -238,6 +238,27 @@ SDLOG_UTC_OFFSET: {}'''.format(utctimestamp.strftime('%d-%m-%Y %H:%M'), utc_offs
         vel_y = local_pos.data['vy'][local_vel_valid_indices]
         vel_z = local_pos.data['vz'][local_vel_valid_indices]
 
+# take-off distance (take only valid indexes)
+        # total_dist_m = 0
+        # last_index = -2
+        # land=ulog.get_dataset('vehicle_land_detected')
+        # #land=land.data['landed']
+        # #print(land)
+        # for valid_index in np.argwhere(pos_z>75.5):
+        #     index = valid_index[0]
+        #     if index == last_index + 1:
+        #         dx = pos_x[index] - pos_x[last_index]
+        #         dy = pos_y[index] - pos_y[last_index]
+        #         dz = pos_z[index] - pos_z[last_index]
+        #         total_dist_m += sqrt(dx*dx + dy*dy + dz*dz)
+        #     last_index = index
+        # if total_dist_m < 1:
+        #     pass # ignore
+        # elif total_dist_m > 1000:
+        #     table_text_right.append(('Take-off Distance', "{:.2f} km".format(total_dist_m/1000)))
+        # else:
+        #     table_text_right.append(('Take-off Distance', "{:.1f} m".format(total_dist_m)))
+        
         # total distance (take only valid indexes)
         total_dist_m = 0
         last_index = -2
